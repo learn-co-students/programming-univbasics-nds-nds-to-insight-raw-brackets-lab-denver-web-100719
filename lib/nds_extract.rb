@@ -1,18 +1,24 @@
+
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'directors_database'
 
 def directors_totals(nds)
-pp nds
-  result = {
-  }
-  #
-  # Use loops, variables and the accessing method, [], to loop through the NDS
-  # and total up all the
-  # ...
-  # ...
-  # ...
-  #
-  #
-  # Be sure to return the result at the end!
-  nil
+
+result = {
+
+}
+total_gross = 0
+row_index = 0
+
+while row_index < nds.length do
+  column_index = 0
+  while column_index < nds[row_index][:movies].length do
+    total_gross += nds[row_index][:movies][column_index][:worldwide_gross]
+    column_index += 1
+  end
+    result["#{nds[row_index][:name]}"] = total_gross
+  row_index += 1
+  total_gross = 0
+end
+  result
 end
